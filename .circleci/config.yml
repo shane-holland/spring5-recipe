@@ -1,14 +1,21 @@
 version: 2
 jobs:
   build:
-    working-directory: ~/spring5-recipe-app
+  
+    working_directory: ~/spring5-recipe-app
+    
     docker:
       - image: circleci/openjdk:8-jdk-browsers
+      
     steps:
+    
       - checkout
+      
       - restore_cache:
           key: spring5-recipe-app-{{ checksum "pom.xml" }}
+          
       - run: mvn dependency: go-offline
+      
       - save_cache:
           paths:
             - ~/.m2
